@@ -1,0 +1,1 @@
+{"name":"salahiya","version":"1.0.0","description":"Expiry tracker for food and medicine at home. Static, offline, Arabic and English.","license":"MIT","scripts":{"test":"node --test tests/logic.test.js && node tests/e2e.js","start":"python3 -m http.server 8080"},"devDependencies":{"puppeteer-core":"^24.0.0"}}

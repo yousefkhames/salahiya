@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>صلاحية · Salahiya</title>
+<meta name="description" content="Track expiry dates of food and medicine at home. Works offline, data stays in your browser.">
+<meta name="theme-color" content="#15372e">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#list" data-i="skip">Skip</a>
+<header class="top">
+  <div class="brand"><img src="favicon.svg" alt="" width="40" height="40"><div><b data-i="appName"></b><small data-i="tagline"></small></div></div>
+  <div class="top-actions">
+    <button id="langBtn" class="ghost" type="button" aria-label="Language">EN</button>
+    <button id="menuBtn" class="ghost" type="button" data-i-aria="menu" aria-haspopup="dialog">⋯</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="hero" aria-live="polite"></section>
+
+  <section class="tiles" aria-label="Summary">
+    <button class="tile t-expired" data-status="expired" type="button"><span class="n" id="nExpired">0</span><span data-i="sExpired"></span></button>
+    <button class="tile t-soon" data-status="soon" type="button"><span class="n" id="nSoon">0</span><span id="lblSoon"></span></button>
+    <button class="tile t-ok" data-status="ok" type="button"><span class="n" id="nOk">0</span><span data-i="sOk"></span></button>
+  </section>
+
+  <section class="tools">
+    <input id="q" type="search" data-i-ph="search" autocomplete="off">
+    <div class="chips" id="catChips" role="group" aria-label="Category">
+      <button type="button" data-cat="all" class="on" data-i="cAll"></button>
+      <button type="button" data-cat="food" data-i="cFood"></button>
+      <button type="button" data-cat="medicine" data-i="cMed"></button>
+      <button type="button" data-cat="other" data-i="cOther"></button>
+    </div>
+    <div class="row2">
+      <label><span data-i="place"></span><select id="placeSel"></select></label>
+      <label><span data-i="sort"></span><select id="sortSel"><option value="expiry" data-i="sortExp"></option><option value="name" data-i="sortName"></option><option value="added" data-i="sortAdded"></option></select></label>
+    </div>
+    <button id="clearFilter" class="link" type="button" hidden data-i="clearFilter"></button>
+  </section>
+
+  <ul id="list" class="list" aria-live="polite"></ul>
+  <div id="empty" class="empty" hidden></div>
+
+  <section class="waste" id="waste" hidden></section>
+</main>
+
+<button id="addBtn" class="fab" type="button"><span aria-hidden="true">＋</span><b data-i="add"></b></button>
+
+<dialog id="itemDlg" aria-labelledby="dlgTitle">
+  <form id="itemForm" method="dialog" novalidate>
+    <h2 id="dlgTitle"></h2>
+    <label><span data-i="fName"></span><input id="fName" required maxlength="80" autocomplete="off" list="nameHints"></label>
+    <datalist id="nameHints"></datalist>
+    <div class="seg" id="fCat" role="group"><button type="button" data-v="food" class="on" data-i="cFood"></button><button type="button" data-v="medicine" data-i="cMed"></button><button type="button" data-v="other" data-i="cOther"></button></div>
+    <label><span data-i="fExpiry"></span><input id="fExpiry" type="date" required></label>
+    <div class="presets" id="presets" aria-label="Quick"></div>
+    <div class="two">
+      <label><span data-i="fQty"></span><input id="fQty" type="number" min="1" max="9999" value="1" inputmode="numeric"></label>
+      <label><span data-i="fPlace"></span><input id="fPlace" maxlength="40" list="placeHints" autocomplete="off"></label>
+    </div>
+    <datalist id="placeHints"></datalist>
+    <details id="openBox"><summary data-i="fOpened"></summary>
+      <p class="hint" data-i="openedHint"></p>
+      <div class="two">
+        <label><span data-i="fOpenedOn"></span><input id="fOpenedOn" type="date"></label>
+        <label><span data-i="fUseWithin"></span><input id="fUseWithin" type="number" min="1" max="3650" inputmode="numeric"></label>
+      </div>
+    </details>
+    <label><span data-i="fNote"></span><input id="fNote" maxlength="200"></label>
+    <p id="formErr" class="err" role="alert" hidden></p>
+    <div class="dlg-actions">
+      <button type="button" class="ghost" id="cancelBtn" data-i="cancel"></button>
+      <button type="submit" class="primary" id="saveBtn" data-i="save"></button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="menuDlg" aria-labelledby="menuTitle">
+  <div class="menu">
+    <h2 id="menuTitle" data-i="settings"></h2>
+    <label><span data-i="soonDays"></span><select id="soonSel"><option>3</option><option>7</option><option>14</option><option>30</option></select></label>
+    <button type="button" id="notifBtn" class="ghost wide" data-i="notif"></button>
+    <p class="hint" id="notifHint"></p>
+    <div class="grid2">
+      <button type="button" id="expJson" class="ghost" data-i="expJson"></button>
+      <button type="button" id="expCsv" class="ghost" data-i="expCsv"></button>
+      <button type="button" id="impBtn" class="ghost" data-i="imp"></button>
+      <button type="button" id="demoBtn" class="ghost" data-i="demo"></button>
+    </div>
+    <input id="impFile" type="file" accept="application/json,.json" hidden>
+    <button type="button" id="wipeBtn" class="danger wide" data-i="wipe"></button>
+    <p class="hint" data-i="privacy"></p>
+    <button type="button" class="primary wide" id="closeMenu" data-i="close"></button>
+  </div>
+</dialog>
+
+<div id="toast" class="toast" role="status" hidden></div>
+<script src="logic.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
