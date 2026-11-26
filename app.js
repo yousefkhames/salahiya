@@ -287,7 +287,7 @@
   });
   $('#demoBtn').addEventListener('click', function () {
     var snap = snapshot(), td = today();
-    t('demoItems').forEach(function (d) { state.items.push(L.normalizeItem({ name: d[0], cat: d[1], place: d[2], expiry: L.addDays(td, d[3]), added: td }, uid())); });
+    t('demoItems').forEach(function (d) { if (state.items.some(function (x) { return x.name === d[0] && x.place === d[2]; })) return; state.items.push(L.normalizeItem({ name: d[0], cat: d[1], place: d[2], expiry: L.addDays(td, d[3]), added: td }, uid())); });
     save(); render(); $('#menuDlg').close(); toast(t('demoAdded'), function () { restore(snap); });
   });
   $('#wipeBtn').addEventListener('click', function () {
