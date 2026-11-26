@@ -9,6 +9,15 @@
 <img src="docs/screenshot-add.png" width="250" alt="Add item dialog with quick presets">
 </p>
 
+## Screenshots
+
+Captured from the live site (https://yousefkhames.github.io/salahiya/).
+
+<p>
+  <img src="docs/screenshots/live-desktop.png" alt="salahiya desktop view" width="640">
+  <img src="docs/screenshots/live-mobile.png" alt="salahiya mobile view" width="200">
+</p>
+
 ## Why
 Half-used syrups, yogurt at the back of the fridge, eye drops opened months ago. Salahiya shows one answer: what to use first, what is already expired, and what is close.
 
