@@ -52,3 +52,10 @@ BASE=https://yousefkhames.github.io/salahiya/ node tests/e2e.js   # same click-t
 
 ## License
 MIT, see [LICENSE](LICENSE).
+
+
+## Demo / portfolio project
+
+Static GitHub Pages site. Data stays in your browser. Sample data is fictional and results are not professional, legal, medical or financial advice.
+
+By Yousef Khames · من تطوير يوسف خميس
